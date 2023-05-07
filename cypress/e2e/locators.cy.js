@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+const { it } = require("mocha");
+
 describe('Find or get Elemnts by using Different locators', () => {
     
     beforeEach(() => {
@@ -34,6 +36,23 @@ describe('Find or get Elemnts by using Different locators', () => {
         cy.get('button').should('contain', 'Login').click();
 
     })
-    
+
+    it('Check finding elements by travelling through DOM', () => {
+        // travel to find the login button: locate username box - go to parent form - then find button
+        cy.get('input[name="username"]').parents('form').find('button').should('contain', 'Login').click();
+    })
+
+    it.only('Check Different Type of Assertions', () => {
+        // Cypress itself bundles assertions provided by Chai, Sinon and jQuery libraries
+        // Should Assertion: does the assertion directly on the object itself
+        cy.get('#wooden_spoon')
+        .should('contain','Login')
+        .and('have.class','btn btn-primary');
+        // expect assertion: creates a subject of our test, then you implement different actions 
+        cy.get('#wooden_spoon').then((buttonElement) => {
+            expect(buttonElement).to.have.text('Login');
+            expect(buttonElement).to.have.class('btn btn-primary');
+        })
+    })
    
 }) 
