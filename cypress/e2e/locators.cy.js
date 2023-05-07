@@ -32,7 +32,7 @@ describe('Find or get Elemnts by using Different locators', () => {
 
         // if I want to use text: no xpath in Cypress as a locator, but it is still possible with a differen approach
         cy.get('button').should('contain', 'Login').click();
-        
+
     })
     
    
