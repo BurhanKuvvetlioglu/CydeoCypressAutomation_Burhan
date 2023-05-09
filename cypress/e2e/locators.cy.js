@@ -1,7 +1,5 @@
 /// <reference types="cypress" />
 
-const { it } = require("mocha");
-
 describe('Find or get Elemnts by using Different locators', () => {
     
     beforeEach(() => {
